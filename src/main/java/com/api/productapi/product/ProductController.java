@@ -29,11 +29,12 @@ public class ProductController {
     public void createProduct(
             @RequestParam("image") MultipartFile imageFile,
             @RequestParam("name") String name,
-            @RequestParam("description") String description
+            @RequestParam("description") String description,
+            @RequestParam("price") int price
     ) {
         try {
             byte[] imageBytes = imageFile.getBytes();
-            Product product = new Product(imageBytes, name, description);
+            Product product = new Product(imageBytes, name, description, price);
             productService.addProduct(product);
         } catch (IOException e) {
             System.err.println("An arithmetic exception occurred: " + e.getMessage());
@@ -50,11 +51,12 @@ public class ProductController {
             @PathVariable("productId") Long productId,
             @RequestParam(required = false) MultipartFile imageFile,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String description
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) int price
     ) {
         try {
             byte[] imageBytes = imageFile != null ? imageFile.getBytes() : null;
-            productService.updateProduct(productId, imageBytes, name, description);
+            productService.updateProduct(productId, imageBytes, name, description, price);
         } catch (IOException e) {
             System.err.println("An arithmetic exception occurred: " + e.getMessage());
             e.printStackTrace();
@@ -66,11 +68,12 @@ public class ProductController {
             @PathVariable("productId") Long productId,
             @RequestParam(required = false) MultipartFile imageFile,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String description
+            @RequestParam(required = false) String description,
+            @RequestParam(required = false) int price
     ) {
         try {
             byte[] imageBytes = imageFile != null ? imageFile.getBytes() : null;
-            productService.updateProduct(productId, imageBytes, name, description);
+            productService.updateProduct(productId, imageBytes, name, description, price);
             return ResponseEntity.ok("Product updated successfully");
         } catch (IOException e) {
             e.printStackTrace();

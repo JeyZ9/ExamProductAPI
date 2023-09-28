@@ -36,7 +36,7 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public void updateProduct(Long productId, byte[] image, String name, String description) {
+    public void updateProduct(Long productId, byte[] image, String name, String description, int price) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalStateException("Product Not Found: " + productId));
 
@@ -50,6 +50,10 @@ public class ProductService {
 
         if (image != null) {
             product.setImage(image);
+        }
+
+        if (!Objects.equals(product.getPrice(), price)) {
+            product.setPrice(price);
         }
 
         productRepository.save(product);

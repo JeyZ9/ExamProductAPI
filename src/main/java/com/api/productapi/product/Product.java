@@ -20,21 +20,29 @@ public class Product {
 //    สร้าง field เก็บข้อมูลข้อมูล
     private Long id;
     @Lob
+    private byte[] advt;
+    @Lob
     private byte[] image;
     private String name;
     private String description;
 
+    private int price;
+
 //    Construtor 3 อัน ใช้สำหรับสร้าง Obj ระบุรายละเอียดตามต้องการ
-    public Product(Long id, byte[] image, String name, String description){
+    public Product(Long id, byte[] image, String name, String description , int price){
         this.id = id;
+        this.advt = advt;
         this.image = image;
         this.name = name;
         this.description = description;
+        this.price = price;
     }
-    public Product(byte[] image, String name, String description){
+    public Product(byte[] image, String name, String description, int price){
+        this.advt = advt;
         this.image = image;
         this.name = name;
         this.description = description;
+        this.price = price;
     }
     public Product(){}
 
@@ -65,6 +73,12 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+    public int getPrice(){
+        return price;
+    }
+    public void setPrice(int price){
+        this.price = price;
+    }
 
 //    toString() method แสดงข้อมูลของ obj เป็น String
     @Override
@@ -72,8 +86,10 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", image=" + Arrays.toString(image) +
+                ", advt=" + Arrays.toString(advt) +'\'' +
+                ", image=" + Arrays.toString(image) +'\'' +
                 ", description='" + description + '\'' +
+                ", price='" + price + '\'' +
                 '}';
     }
 }
