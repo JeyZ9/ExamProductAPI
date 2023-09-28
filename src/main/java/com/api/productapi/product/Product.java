@@ -1,11 +1,11 @@
-package com.api.productapi.product;
+  package com.api.productapi.product;
 
 import jakarta.persistence.*;
 
 import java.util.Arrays;
 
-@Entity //ระบุว่าคลาสนี้เป็น JPA Entity หมายถึงจับคู่ในฐานข้อมูลได้
-@Table //ระบุว่า Entity จะถูก Map ในตารงฐานข้อมูลและสามารถเปลี่ยนชื่อได้
+@Entity
+@Table
 public class Product {
     @Id
     @SequenceGenerator(
@@ -28,7 +28,7 @@ public class Product {
 
     private int price;
 
-//    Construtor 3 อัน ใช้สำหรับสร้าง Obj ระบุรายละเอียดตามต้องการ
+//    Construtor
     public Product(Long id, byte[] image, String name, String description , int price){
         this.id = id;
         this.advt = advt;
